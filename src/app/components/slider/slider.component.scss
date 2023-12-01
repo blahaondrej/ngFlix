@@ -1,0 +1,49 @@
+.slider {
+    position: relative;
+    height: 35rem;
+    .slide {
+        width: 100%;
+        position: absolute;
+        height: 35rem;
+        &-bg {
+            height: 35rem;
+            position: relative;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                display: block;
+                background-image: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 12%, rgba(255,255,255,0) 100%);
+            }
+        }
+        &-pane {
+            position: absolute;
+            top: 5rem;
+            left: 5rem;
+            color: #fff;
+            .title {
+                font-size: 2.5rem;
+            }
+            .meta {
+                font-size: 1.2rem;
+                display: inline;
+                .pi {
+                    color: orange;
+                    margin-right: 10px;
+                }
+            }
+            .description {
+                font-size: 1.2rem;
+                width: 75%;
+            }
+        }
+    }
+}
