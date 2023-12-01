@@ -1,0 +1,56 @@
+.show-item {
+    display: block;
+    height: 425px;
+    position: relative;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all .2s;
+    &:hover {
+        transform: scale(1.05);
+    }
+    &-image {
+        height: 425px;
+        border-radius: 5px;
+        display: block;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+    
+            display: block;
+        }
+    }
+    &-rating {
+        position: absolute;
+        display: flex;;
+        top: 10px;
+        left: 10px;
+        align-items: center;
+        background-color: black;
+        border-radius: 5px;
+        padding: 5px;
+        span {
+            color: #fff;
+        }
+        .pi {
+            font-size: 1.2rem;
+            color: orange;
+            margin-right: 10px;
+        }
+    }
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        height: 50px;
+        background-color: rgba($color: #000000, $alpha: 0.8);
+        color: #fff;
+        border-radius: 0 0 5px 5px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 5px 10px;
+    }
+}

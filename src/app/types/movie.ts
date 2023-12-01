@@ -1,4 +1,4 @@
-type Movie = {
+export type Movie = {
   id: number
   backdrop_path: string
   genre_ids: number[]
