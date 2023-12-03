@@ -9,10 +9,14 @@ import { HomeComponent } from './pages/home/home.component'
 import { MovieListComponent } from './pages/movie-list/movie-list.component'
 import { SliderComponent } from './components/slider/slider.component'
 import { HttpClientModule } from '@angular/common/http'
-import { MoviesService } from './services/movies.service';
-import { BannerComponent } from './components/banner/banner.component';
+import { MoviesService } from './services/movies.service'
+import { BannerComponent } from './components/banner/banner.component'
 import { ShowItemComponent } from './components/show-item/show-item.component'
-
+import { ShowDetailComponent } from './pages/show-detail/show-detail.component'
+import { TabViewModule } from 'primeng/tabview'
+import { VideoEmbedComponent } from './components/video-embed/video-embed.component'
+import { ImageModule } from 'primeng/image'
+import { CarouselModule } from 'primeng/carousel'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,12 +27,17 @@ import { ShowItemComponent } from './components/show-item/show-item.component'
     SliderComponent,
     BannerComponent,
     ShowItemComponent,
+    ShowDetailComponent,
+    VideoEmbedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    TabViewModule,
+    ImageModule,
+    CarouselModule,
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent],
