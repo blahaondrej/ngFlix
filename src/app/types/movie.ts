@@ -28,3 +28,7 @@ export type Genre = {
   id: string
   name: string
 }
+
+export type GenresDto = {
+  genres: Genre[]
+}

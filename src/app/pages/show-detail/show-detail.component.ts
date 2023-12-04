@@ -35,26 +35,27 @@ export class ShowDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.showId = this.router.snapshot.params['id']
-    this.showType = this.router.snapshot.params['type']
-
-    if (this.showType === 'movie') {
-      this.show$ = this.moviesService.getMovieById(this.showId)
-      this.showVideos$ = this.moviesService.getMovieVideos(this.showId)
-      this.showImages$ = this.moviesService.getMovieImages(this.showId)
-      this.showCast$ = this.moviesService.getMovieCast(this.showId)
-      this.showSimilarShows$ = this.moviesService.getSimilarMovie(this.showId)
-    }
-    if (this.showType === 'tv') {
-      this.show$ = this.tvService
-        .getTvshowById(this.showId)
-        .pipe(map(mapToMovie))
-      this.showVideos$ = this.tvService.getTvshowVideos(this.showId)
-      this.showImages$ = this.tvService.getTvshowImages(this.showId)
-      this.showCast$ = this.tvService.getTvshowCast(this.showId)
-      this.showSimilarShows$ = this.tvService
-        .getSimilarTvshows(this.showId)
-        .pipe(map(mapToMovies))
-    }
+    this.router.params.subscribe((params) => {
+      this.showId = params['id']
+      this.showType = params['type']
+      if (this.showType === 'movie') {
+        this.show$ = this.moviesService.getMovieById(this.showId)
+        this.showVideos$ = this.moviesService.getMovieVideos(this.showId)
+        this.showImages$ = this.moviesService.getMovieImages(this.showId)
+        this.showCast$ = this.moviesService.getMovieCast(this.showId)
+        this.showSimilarShows$ = this.moviesService.getSimilarMovie(this.showId)
+      }
+      if (this.showType === 'tv') {
+        this.show$ = this.tvService
+          .getTvshowById(this.showId)
+          .pipe(map(mapToMovie))
+        this.showVideos$ = this.tvService.getTvshowVideos(this.showId)
+        this.showImages$ = this.tvService.getTvshowImages(this.showId)
+        this.showCast$ = this.tvService.getTvshowCast(this.showId)
+        this.showSimilarShows$ = this.tvService
+          .getSimilarTvshows(this.showId)
+          .pipe(map(mapToMovies))
+      }
+    })
   }
 }

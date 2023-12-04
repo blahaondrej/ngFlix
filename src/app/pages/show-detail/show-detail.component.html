@@ -63,6 +63,24 @@
                     </div>
                 </div>
             </div>
+            <ng-container *ngIf="showCast$ | async as actors">
+
+                <p-carousel [value]="actors" [numVisible]="6" [numScroll]="3" [circular]="false">
+                    <ng-template let-actor pTemplate="item">
+                        <div class="actor">
+                            <img *ngIf="actor.profile_path; else defaultActorPhoto"
+                                [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name">
+                            <div class="name">
+                                <p>{{actor.character}}</p>
+                                <p>({{actor.name}})</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-carousel>
+            </ng-container>
+            <ng-container *ngIf="showSimilarShows$ | async as showSimilarShows">
+                <app-banner [title]="'Watch Similar'" [shows]="showSimilarShows"></app-banner>
+            </ng-container>
         </p-tabPanel>
         <p-tabPanel header="Videos">
             <ng-container *ngIf="showVideos$ |async as showVideos">
@@ -85,25 +103,6 @@
             </ng-container>
         </p-tabPanel>
     </p-tabView>
-
-    <ng-container *ngIf="showCast$ | async as actors">
-
-        <p-carousel [value]="actors" [numVisible]="6" [numScroll]="3" [circular]="false">
-            <ng-template let-actor pTemplate="item">
-                <div class="actor">
-                    <img *ngIf="actor.profile_path; else defaultActorPhoto"
-                        [src]="imagesSizes.medium + actor.profile_path" [alt]="actor.name">
-                    <div class="name">
-                        <p>{{actor.character}}</p>
-                        <p>({{actor.name}})</p>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
-    </ng-container>
-    <ng-container *ngIf="showSimilarShows$ | async as showSimilarShows">
-        <app-banner [title]="'Similar Movies'" [shows]="showSimilarShows"></app-banner>
-    </ng-container>
 </ng-container>
 
 <ng-template #defaultActorPhoto>
