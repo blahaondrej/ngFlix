@@ -15,8 +15,11 @@ import { ShowDetailComponent } from './pages/show-detail/show-detail.component'
 import { TabViewModule } from 'primeng/tabview'
 import { VideoEmbedComponent } from './components/video-embed/video-embed.component'
 import { ImageModule } from 'primeng/image'
-import { CarouselModule } from 'primeng/carousel';
+import { CarouselModule } from 'primeng/carousel'
 import { ShowsListComponent } from './pages/shows-list/shows-list.component'
+import { InputTextModule } from 'primeng/inputtext'
+import { FormsModule } from '@angular/forms'
+import { PaginatorModule } from 'primeng/paginator'
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +41,9 @@ import { ShowsListComponent } from './pages/shows-list/shows-list.component'
     TabViewModule,
     ImageModule,
     CarouselModule,
+    InputTextModule,
+    FormsModule,
+    PaginatorModule,
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent],
