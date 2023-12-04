@@ -9,5 +9,7 @@ import { Movie } from '../../types/movie'
 })
 export class ShowItemComponent {
   @Input() showItem: Movie | null = null
+  @Input() showType: 'tv' | 'movie' = 'movie'
+
   imageBaseUrl = imageBaseUrl
 }

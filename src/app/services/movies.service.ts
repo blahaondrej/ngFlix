@@ -46,4 +46,20 @@ export class MoviesService {
       )
       .pipe(map((data) => data.cast))
   }
+
+  getSimilarMovie(id: string) {
+    return this.http
+      .get<MoviesDto>(
+        `${this.apiUrlBase}/movie/${id}/similar?api_key=${this.apiKey}`
+      )
+      .pipe(map((data) => data.results.slice(0, 12)))
+  }
+
+  searchMovies(page: number, searchValue?: string) {
+    return this.http
+      .get<MoviesDto>(
+        `${this.apiUrlBase}/search/movie?page=${page}?api_key=${this.apiKey}`
+      )
+      .pipe(map((data) => data.results))
+  }
 }

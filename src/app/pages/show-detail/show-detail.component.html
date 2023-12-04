@@ -101,6 +101,9 @@
             </ng-template>
         </p-carousel>
     </ng-container>
+    <ng-container *ngIf="showSimilarShows$ | async as showSimilarShows">
+        <app-banner [title]="'Similar Movies'" [shows]="showSimilarShows"></app-banner>
+    </ng-container>
 </ng-container>
 
 <ng-template #defaultActorPhoto>

@@ -19,6 +19,6 @@ export class HomeComponent {
   topRatedMovies$ = this.moviesService.getMoviesByType('top_rated')
   popularMovies$ = this.moviesService.getMoviesByType('popular')
   popularTvshows$ = this.tvshowsService
-    .getTvshowsByType('popular')
+    .getTvshowByType('popular')
     .pipe(map(mapToMovies))
 }
