@@ -10,14 +10,15 @@
     </div>
     <ng-container *ngIf="shows$ | async as showsList">
         <div class="grid">
-            <div class="col-2" *ngFor="let item of showsList">
+            <div class="col-2" *ngFor="let item of showsList; trackBy: showsListTrackBy">
                 <app-show-item [showItem]="item" [showType]="showsType"></app-show-item>
             </div>
         </div>
-        <div class="grid">
-            <div class="col-12">
-                <p-paginator (onPageChange)="onPageChange($event)" [rows]="20" [totalRecords]="120"></p-paginator>
-            </div>
-        </div>
     </ng-container>
+    <div class="grid">
+        <div class="col-12">
+            <p-paginator (onPageChange)="onPageChange($event)" [rows]="20"
+                [totalRecords]="this.totalRecords()"></p-paginator>
+        </div>
+    </div>
 </div>

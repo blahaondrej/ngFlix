@@ -12,4 +12,8 @@ export class ShowItemComponent {
   @Input() showType: 'tv' | 'movie' = 'movie'
 
   imageBaseUrl = imageBaseUrl
+
+  ngOnInit() {
+    console.log(this.showType)
+  }
 }

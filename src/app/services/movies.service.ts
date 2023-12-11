@@ -71,14 +71,13 @@ export class MoviesService {
   }
 
   getMoviesByGenre(genreId: string, pageNumber = 1) {
-    return this.http
-      .get<MoviesDto>(
-        `${this.apiUrlBase}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`
-      )
-      .pipe(
+    return this.http.get<MoviesDto>(
+      `${this.apiUrlBase}/discover/movie?with_genres=${genreId}&page=${pageNumber}&api_key=${this.apiKey}`
+    )
+    /* .pipe(
         map((data) => {
           return data.results
         })
-      )
+      ) */
   }
 }

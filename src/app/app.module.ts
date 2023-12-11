@@ -21,6 +21,7 @@ import { InputTextModule } from 'primeng/inputtext'
 import { FormsModule } from '@angular/forms'
 import { PaginatorModule } from 'primeng/paginator';
 import { GenresComponent } from './pages/genres/genres.component'
+import {CommonModule} from "@angular/common";
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { GenresComponent } from './pages/genres/genres.component'
     GenresComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -13,12 +13,11 @@
                 <app-show-item [showItem]="item" [showType]="showsType"></app-show-item>
             </div>
         </div>
-
-        <div class="grid">
-            <div class="col-12">
-                <p-paginator (onPageChange)="onPageChange($event)" [rows]="20"
-                    [totalRecords]="showsList.total_results"></p-paginator>
-            </div>
-        </div>
     </ng-container>
+    <div class="grid">
+        <div class="col-12">
+            <p-paginator (onPageChange)="onPageChange($event)" [rows]="20"
+                [totalRecords]="this.totalRecords()"></p-paginator>
+        </div>
+    </div>
 </div>

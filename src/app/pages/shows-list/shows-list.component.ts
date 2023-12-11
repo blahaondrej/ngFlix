@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, signal } from '@angular/core'
 import { MoviesService } from '../../services/movies.service'
-import { Observable, map } from 'rxjs'
+import { Observable, map, tap } from 'rxjs'
 import { MoviesDto } from '../../types/movie'
 import { PaginatorState } from 'primeng/paginator'
 import { TvshowsService } from '../../services/tvshows.service'
@@ -18,7 +18,7 @@ export class ShowsListComponent implements OnInit {
   searchValue = ''
   showsType: 'movie' | 'tv' = 'movie'
 
-  currentPage: number = 1
+  totalRecords = signal(0)
 
   constructor(
     private MoviesService: MoviesService,
@@ -32,7 +32,10 @@ export class ShowsListComponent implements OnInit {
     searchKeyword?: string
   ) {
     if (showsType === 'movie') {
-      this.showsList$ = this.MoviesService.searchMovies(page, searchKeyword)
+      this.showsList$ = this.MoviesService.searchMovies(
+        page,
+        searchKeyword
+      ).pipe(tap(({ total_pages }) => this.totalRecords.set(total_pages)))
     }
     if (showsType === 'tv') {
       this.showsList$ = this.tvShowsService
@@ -46,6 +49,8 @@ export class ShowsListComponent implements OnInit {
   }
 
   onPageChange(event: PaginatorState) {
+    console.log('event', event)
+
     const pageNumber = event.page ? event.page + 1 : 1
     this.getPagedShows(this.showsType, pageNumber, this.searchValue)
   }

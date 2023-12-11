@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core'
-import { Movie } from '../../types/movie'
+import {Component, Input} from '@angular/core'
+import {Movie}            from '../../types/movie'
 
 @Component({
   selector: 'app-banner',

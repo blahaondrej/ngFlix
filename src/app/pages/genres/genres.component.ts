@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core'
-import { Genre, Movie, MoviesDto } from '../../types/movie'
-import { Observable, map } from 'rxjs'
+import { Component, OnInit, signal } from '@angular/core'
+import { Genre, Movie } from '../../types/movie'
+import { Observable, map, tap } from 'rxjs'
 import { MoviesService } from '../../services/movies.service'
 import { ActivatedRoute } from '@angular/router'
 import { PaginatorState } from 'primeng/paginator'
-import { mapToMoviesDto } from '../../types/tvshow'
 import { TvshowsService } from '../../services/tvshows.service'
+import { MoviesDto } from '../../types/movie'
 
 @Component({
   selector: 'app-genres',
@@ -19,6 +19,7 @@ export class GenresComponent implements OnInit {
   shows$: Observable<Movie[]> | null = null
   genreId = ''
   searchValue = ''
+  totalRecords = signal(0)
   constructor(
     private MoviesService: MoviesService,
     private tvShowsService: TvshowsService,
@@ -28,30 +29,31 @@ export class GenresComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.genreId = params['genreId']
-      this.showsType = params['type']
-      this.shows$ = this.MoviesService.getMoviesByGenre(this.genreId)
+      this.shows$ = this.MoviesService.getMoviesByGenre(this.genreId).pipe(
+        map((data) => {
+          return data.results
+        })
+      )
       this.genres$ = this.MoviesService.getMovieGenres()
-      this.getPagedShows(this.showsType, 1, this.searchValue)
+      this.getPagedShows(1)
     })
   }
 
-  getPagedShows(
-    showsType: 'movie' | 'tv',
-    page: number,
-    searchKeyword?: string
-  ) {
-    if (showsType === 'movie') {
-      this.showsList$ = this.MoviesService.searchMovies(page, searchKeyword)
-    }
-    if (showsType === 'tv') {
-      this.showsList$ = this.tvShowsService
-        .searchTvShows(page, searchKeyword)
-        .pipe(map(mapToMoviesDto))
-    }
+  getPagedShows(page: number) {
+    this.shows$ = this.MoviesService.getMoviesByGenre(this.genreId, page).pipe(
+      tap(({ total_results }) => this.totalRecords.set(total_results)),
+      map((data) => {
+        return data.results
+      })
+    )
   }
 
   onPageChange(event: PaginatorState) {
     const pageNumber = event.page ? event.page + 1 : 1
-    this.getPagedShows(this.showsType, pageNumber, this.searchValue)
+    this.getPagedShows(pageNumber)
+  }
+
+  showsListTrackBy(index: number, movie: Movie) {
+    return movie.id
   }
 }
