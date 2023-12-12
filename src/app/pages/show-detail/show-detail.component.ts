@@ -28,6 +28,14 @@ export class ShowDetailComponent implements OnInit {
 
   imagesSizes = IMAGES_SIZES
 
+  displayGallery = false
+  activeIndex = 0
+
+  openGallery(index: number) {
+    this.activeIndex = index
+    this.displayGallery = true
+  }
+
   constructor(
     private router: ActivatedRoute,
     private moviesService: MoviesService,

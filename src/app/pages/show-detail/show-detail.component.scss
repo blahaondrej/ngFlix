@@ -34,6 +34,11 @@
 }
 .show-image {
     width: 100%;
+    transition: all .2s;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+    }
 }
 
 .actor {

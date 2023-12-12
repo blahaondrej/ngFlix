@@ -19,9 +19,10 @@ import { CarouselModule } from 'primeng/carousel'
 import { ShowsListComponent } from './pages/shows-list/shows-list.component'
 import { InputTextModule } from 'primeng/inputtext'
 import { FormsModule } from '@angular/forms'
-import { PaginatorModule } from 'primeng/paginator';
+import { PaginatorModule } from 'primeng/paginator'
 import { GenresComponent } from './pages/genres/genres.component'
-import {CommonModule} from "@angular/common";
+import { CommonModule } from '@angular/common'
+import { GalleriaModule } from 'primeng/galleria'
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import {CommonModule} from "@angular/common";
     InputTextModule,
     FormsModule,
     PaginatorModule,
+    GalleriaModule,
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent],
