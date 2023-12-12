@@ -91,38 +91,14 @@
                 </div>
             </ng-container>
         </p-tabPanel>
-
-        <!-- <ng-container *ngIf="showImages$ |async as showImages">
-                <div class="grid">
-                    <div class="col-2" *ngFor="let item of showImages">
-                        <p-image [src]="imagesSizes.large + item.file_path" [alt]="show.title" width="100%"
-                            [preview]="true" class="show-image"></p-image>
-                    </div>
-                </div>
-            </ng-container> -->
         <ng-container *ngIf="showImages$ | async as showImages">
-            <!-- <p-tabPanel header="Photos">
-                <div class="grid">
-                    <div class="col-2" *ngFor="let item of showImages">
-                        <p-image [src]="imagesSizes.large + item.file_path" [alt]="show.title" width="100%"
-                            [preview]="true" class="show-image"></p-image>
-                    </div>
-                </div>
-                <p-galleria [value]="showImages" [visible]="true" [activeIndex]="1"
-                    [containerStyle]="{ 'max-width': '850px' }" [numVisible]="7" [circular]="true" [fullScreen]="true"
-                    [showItemNavigators]="true" [showThumbnails]="false">
-                    <ng-template pTemplate="item" let-item>
-                        <img [src]="imagesSizes.large + item.file_path" style="width: 100%; display: block;"
-                            [alt]="show.title" />
-                    </ng-template>
-                </p-galleria>
-            </p-tabPanel> -->
+
             <p-tabPanel header="Photos">
                 <ng-container *ngIf="showImages$ | async as showImages">
                     <div class="grid">
                         <div class="col-6 md:col-4 lg:col-3 xl:col-2" *ngFor="let item of showImages; let i = index"
                             tabIndex={0}>
-                            <img [src]="imagesSizes.large + item.file_path" [alt]="show.title" width="100%"
+                            <img [src]="imagesSizes.medium + item.file_path" [alt]="show.title" width="100%"
                                 (click)="openGallery(i)" (keyup.enter)="openGallery(i)" class="show-image">
                         </div>
                     </div>

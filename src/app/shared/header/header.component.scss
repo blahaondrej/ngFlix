@@ -25,6 +25,9 @@ header {
                     color: #fff;
                     text-decoration: none;
                     margin-right: 15px;
+                    @media (max-width: 991px) {
+                        margin-right: 10px;
+                    }
                 }
             }
         }

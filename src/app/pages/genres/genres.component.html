@@ -10,7 +10,7 @@
     </div>
     <ng-container *ngIf="shows$ | async as showsList">
         <div class="grid">
-            <div class="col-2" *ngFor="let item of showsList; trackBy: showsListTrackBy">
+            <div class="col-6 md:col-4 lg:col-3 xl:col-2" *ngFor="let item of showsList; trackBy: showsListTrackBy">
                 <app-show-item [showItem]="item" [showType]="showsType"></app-show-item>
             </div>
         </div>

@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="description">
-                    <p>{{ movie.overview }}</p>
+                    <p>{{ movie.overview | slice:0:300 }}{{ movie.overview.length > 300 ? '...' : '' }}</p>
                 </div>
             </div>
         </div>
